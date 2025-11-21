@@ -1,5 +1,6 @@
 from django.db import models 
 
+from uploader.models import Image
 from .colecao import Colecao
 from .materia_prima import MateriaPrima
 from .sub_tipo import SubtipoMaterial
@@ -11,6 +12,7 @@ from core.users.models import User
 class Item(models.Model):
     acervo = models.ForeignKey(Acervo, on_delete=models.PROTECT)
     titulo = models.CharField(max_length=200)
+    imagem = models.ForeignKey(Image, related_name="+", on_delete=models.CASCADE, null=True, blank=True, default=None)
     colecao = models.ForeignKey(Colecao, on_delete=models.PROTECT)
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.PROTECT)
     subtipo = models.ForeignKey(SubtipoMaterial, on_delete=models.SET_NULL, null=True, blank=True)
