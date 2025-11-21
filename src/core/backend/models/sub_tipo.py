@@ -11,4 +11,4 @@ class SubtipoMaterial(models.Model):
         unique_together = ('materia_prima', 'termo')
 
     def __str__(self):
-        return f"{self.termo} ({self.materia_prima.termo})"
+        return f"{self.termo} ({self.materia_prima.nome})"
