@@ -12,9 +12,9 @@ license = {text = "MIT"}
 
 
 [tool.pdm.scripts]
-dev = "python src/manage.py runserver"
-createsuperuser = "python src/manage.py createsuperuser"
-pre_migrate = "python src/manage.py makemigrations"
-migrate = "python src/manage.py migrate"
-post_migrate = "python src/manage.py graph_models -g -o core.png core"
-shell = "python src/manage.py shell"
+dev = "python manage.py runserver"
+createsuperuser = "python manage.py createsuperuser"
+pre_migrate = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+post_migrate = "python manage.py graph_models -g -o core.png core"
+shell = "python manage.py shell"
