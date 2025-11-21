@@ -18,7 +18,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+router.register(r'localizacao', LocalizacaoViewSet, basename='localizacao')
+router.register(r'materiaprima', MateriaPrimaViewSet, basename='materiaprima')
+router.register(r'itemacervo', ItemAcervoViewSet, basename='itemacervo')
+router.register(r'usuario', ColecaoViewSet, basename='usuario')
+router.register(r'colecao', ColecaoViewSet, basename='colecao')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('api/', include(router.urls)),
 ]

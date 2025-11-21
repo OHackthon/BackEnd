@@ -1,1 +1,4 @@
-from .exemplo import AdminModelExemplo
+from .categoriaAcervo import AdminCategoriaAcervo
+from .colecao import AdminColecao
+from .itemAcervo import AdminItemAcervo
+from .localizacao import AdminLocalizacao
