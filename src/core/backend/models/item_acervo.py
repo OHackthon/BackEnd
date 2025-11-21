@@ -1,10 +1,10 @@
 from django.db import models 
 
 from .colecao import Colecao
-from .materiaPrima import MateriaPrima
-from .subTipo import SubtipoMaterial
+from .materia_prima import MateriaPrima
+from .sub_tipo import SubtipoMaterial
 from .localizacao import Localizacao
-from .categoriaAcervo import CategoriaAcervo
+from .categoria_acervo import CategoriaAcervo
 from core.users.models import User
 
 class Item(models.Model):

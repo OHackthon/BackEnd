@@ -1,4 +1,4 @@
-from rest_framworks.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer
 from core.backend.models import Colecao
 
 class ColecaoSerializer(ModelSerializer):

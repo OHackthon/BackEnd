@@ -1,6 +1,6 @@
 from django.db import models 
 
-from .materiaPrima import MateriaPrima
+from .materia_prima import MateriaPrima
 
 class SubtipoMaterial(models.Model):
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.CASCADE, related_name='subtipos')
