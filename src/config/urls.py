@@ -13,6 +13,11 @@ from core.users.views import UserViewSet
 router = DefaultRouter()
 
 router.register(r'users', UserViewSet, basename='users')
+router.register(r'localizacao', LocalizacaoViewSet, basename='localizacao')
+router.register(r'materiaprima', MateriaPrimaViewSet, basename='materiaprima')
+router.register(r'itemacervo', ItemAcervoViewSet, basename='itemacervo')
+router.register(r'usuario', ColecaoViewSet, basename='usuario')
+router.register(r'colecao', ColecaoViewSet, basename='colecao')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
