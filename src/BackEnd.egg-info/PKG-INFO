@@ -8,5 +8,8 @@ Requires-Python: ==3.12.*
 Description-Content-Type: text/markdown
 Requires-Dist: django>=5.2.8
 Requires-Dist: djangorestframework>=3.16.1
+Requires-Dist: djangorestframework-simplejwt>=5.5.1
+Requires-Dist: django-cors-headers>=4.9.0
+Requires-Dist: python-dotenv>=1.2.1
 
 # BackEnd
