@@ -1,3 +1,5 @@
+from .acervo import AcervoSerializer
+from .colecionador import ColecionadorSerializer
 from .categoria_acervo import CategoriaAcervoSerializer
 from .colecao import ColecaoSerializer
 from .item_acervo import ItemAcervoSerializer
