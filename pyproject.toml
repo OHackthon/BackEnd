@@ -5,16 +5,17 @@ description = "Default template for PDM package"
 authors = [
     {name = "renato-chagas", email = "renatochagas.m@gmail.com"},
 ]
-dependencies = ["django>=5.2.8", "djangorestframework>=3.16.1"]
+dependencies = ["django>=5.2.8", "djangorestframework>=3.16.1", "djangorestframework-simplejwt>=5.5.1", "django-cors-headers>=4.9.0", "python-dotenv>=1.2.1"]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}
 
 
 [tool.pdm.scripts]
-dev = "python src/manage.py runserver"
-createsuperuser = "python src/manage.py createsuperuser"
-pre_migrate = "python src/manage.py makemigrations"
-migrate = "python src/manage.py migrate"
-post_migrate = "python src/manage.py graph_models -g -o core.png core"
-shell = "python src/manage.py shell"
+dev = "python manage.py runserver"
+createsuperuser = "python manage.py createsuperuser"
+pre_migrate = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+post_migrate = "python manage.py graph_models -g -o core.png core"
+shell = "python manage.py shell"
+startapp = "python manage.py startapp"

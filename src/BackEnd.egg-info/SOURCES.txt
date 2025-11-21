@@ -1,6 +1,5 @@
 README.md
 pyproject.toml
-src/manage.py
 src/BackEnd.egg-info/PKG-INFO
 src/BackEnd.egg-info/SOURCES.txt
 src/BackEnd.egg-info/dependency_links.txt
@@ -16,7 +15,6 @@ src/core/backend/admin.py
 src/core/backend/apps.py
 src/core/backend/tests.py
 src/core/backend/admin/__init__.py
-src/core/backend/admin/exemplo.py
 src/core/backend/models/__init__.py
 src/core/backend/models/categoriaAcervo.py
 src/core/backend/models/colecao.py
@@ -24,7 +22,22 @@ src/core/backend/models/itemAcervo.py
 src/core/backend/models/localizacao.py
 src/core/backend/models/materiaPrima.py
 src/core/backend/models/subTipo.py
+src/core/backend/serializers/ItemAcervo.py
 src/core/backend/serializers/__init_.py
 src/core/backend/serializers/categoriaAcervo.py
+src/core/backend/serializers/colecao.py
+src/core/backend/serializers/localizacao.py
+src/core/backend/serializers/materiaprima.py
+src/core/backend/serializers/subTipo.py
 src/core/backend/views/__init__.py
 src/core/backend/views/exemplo.py
+src/core/users/__init__.py
+src/core/users/admin.py
+src/core/users/apps.py
+src/core/users/managers.py
+src/core/users/models.py
+src/core/users/serializers.py
+src/core/users/tests.py
+src/core/users/views.py
+src/core/users/migrations/0001_initial.py
+src/core/users/migrations/__init__.py

@@ -5,6 +5,7 @@ from .materiaPrima import MateriaPrima
 from .subTipo import SubtipoMaterial
 from .localizacao import Localizacao
 from .categoriaAcervo import CategoriaAcervo
+from core.users.models import User
 
 class Item(models.Model):
     # Identificação Única
@@ -16,7 +17,7 @@ class Item(models.Model):
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.PROTECT)
     subtipo = models.ForeignKey(SubtipoMaterial, on_delete=models.SET_NULL, null=True, blank=True)
     localizacao_atual = models.ForeignKey(Localizacao, on_delete=models.PROTECT)
-    categoria_acervo = models.ForeignKey('categoriaAcervo.CategoriaAcervo', on_delete=models.PROTECT)
+    categoria_acervo = models.ForeignKey(CategoriaAcervo, on_delete=models.PROTECT)
 
     # Dados Descritivos
     procedencia = models.CharField(max_length=255, null=True, blank=True)
