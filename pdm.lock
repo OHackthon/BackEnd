@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:f406b181f3b408807ce0f523472c1a2460666783a466f65c8c3b25e84f6db5b7"
+content_hash = "sha256:f1501b8389bb3371254e64818d97daf03a3860dee7243562c8f02821b24ae0d6"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -67,16 +67,6 @@ files = [
 ]
 
 [[package]]
-name = "django-dotenv"
-version = "1.4.2"
-summary = "foreman reads from .env. manage.py doesn't. Let's fix that."
-groups = ["default"]
-files = [
-    {file = "django-dotenv-1.4.2.tar.gz", hash = "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb"},
-    {file = "django_dotenv-1.4.2-py2.py3-none-any.whl", hash = "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"},
-]
-
-[[package]]
 name = "django-filter"
 version = "25.2"
 requires_python = ">=3.10"
@@ -134,6 +124,36 @@ dependencies = [
     "jsonschema>=2.6.0",
     "typing-extensions; python_version < \"3.10\"",
     "uritemplate>=2.0.0",
+]
+files = [
+    {file = "drf_spectacular-0.29.0-py3-none-any.whl", hash = "sha256:d1ee7c9535d89848affb4427347f7c4a22c5d22530b8842ef133d7b72e19b41a"},
+    {file = "drf_spectacular-0.29.0.tar.gz", hash = "sha256:0a069339ea390ce7f14a75e8b5af4a0860a46e833fd4af027411a3e94fc1a0cc"},
+]
+
+[[package]]
+name = "drf-spectacular-sidecar"
+version = "2025.10.1"
+requires_python = ">=3.6"
+summary = "Serve self-contained distribution builds of Swagger UI and Redoc with Django"
+groups = ["default"]
+dependencies = [
+    "Django>=2.2",
+]
+files = [
+    {file = "drf_spectacular_sidecar-2025.10.1-py3-none-any.whl", hash = "sha256:f1de343184d1a938179ce363d318258fe1e5f02f2f774625272364835f1c42bd"},
+    {file = "drf_spectacular_sidecar-2025.10.1.tar.gz", hash = "sha256:506a5a21ce1ad7211c28acb4e2112e213f6dc095a2052ee6ed6db1ffe8eb5a7b"},
+]
+
+[[package]]
+name = "drf-spectacular"
+version = "0.29.0"
+extras = ["sidecar"]
+requires_python = ">=3.7"
+summary = "Sane and flexible OpenAPI 3 schema generation for Django REST framework"
+groups = ["default"]
+dependencies = [
+    "drf-spectacular-sidecar",
+    "drf-spectacular==0.29.0",
 ]
 files = [
     {file = "drf_spectacular-0.29.0-py3-none-any.whl", hash = "sha256:d1ee7c9535d89848affb4427347f7c4a22c5d22530b8842ef133d7b72e19b41a"},

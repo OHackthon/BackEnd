@@ -34,6 +34,7 @@ src/core/backend/serializers/colecionador.py
 src/core/backend/serializers/item_acervo.py
 src/core/backend/serializers/localizacao.py
 src/core/backend/serializers/materia_prima.py
+src/core/backend/serializers/reserva.py
 src/core/backend/serializers/sub_tipo.py
 src/core/backend/views/__init__.py
 src/core/backend/views/acervo.py
@@ -43,6 +44,7 @@ src/core/backend/views/colecionador.py
 src/core/backend/views/item_acervo.py
 src/core/backend/views/localizacao.py
 src/core/backend/views/materia_prima.py
+src/core/backend/views/reserva.py
 src/core/backend/views/sub_tipo.py
 src/core/users/__init__.py
 src/core/users/admin.py

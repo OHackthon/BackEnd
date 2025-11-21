@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "django_filters",
     "rest_framework",
     "core.backend",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
     "core.users",
     "uploader",
     "corsheaders",
@@ -115,8 +117,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-}
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    }
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Backend API",
