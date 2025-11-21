@@ -27,7 +27,7 @@ class ItemAcervoFilter(django_filters.FilterSet):
     class Meta:
         model = Item
         fields = {
-            "titulo": ["exact", "icontains"],
+            "nome": ["exact", "icontains"],
             "colecao": ["exact"],
             "materia_prima": ["exact"],
             "subtipo": ["exact"],
