@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin
+from django.contrib import admin
 from core.backend.models import Localizacao
 
+
 @admin.register(Localizacao)
-class AdminLocalizacao(ModelAdmin):
-    list_display = ("endereco", "cidade", "estado", "pais")
-    search_fields = ('endereco', 'cidade', 'estado', 'pais')
+class AdminLocalizacao(admin.ModelAdmin):
+    list_display = ("nome_local", "cidade", "estado", "capacidade_estimada")
+    search_fields = ("nome_local", "cidade", "estado", "bairro", "rua")
     ordering = ("-id",)

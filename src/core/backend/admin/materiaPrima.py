@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin
+from django.contrib import admin
 from core.backend.models import MateriaPrima
 
+
 @admin.register(MateriaPrima)
-class AdminMateriaPrima(ModelAdmin):
-    list_display = ("nome", "descricao", "fornecedor", "quantidade", "unidade_medida", "data_entrada")
-    search_fields = ('nome', "descricao", "fornecedor__nome")
+class AdminMateriaPrima(admin.ModelAdmin):
+    list_display = ("materia",)
+    search_fields = ("materia",)
     ordering = ("-id",)

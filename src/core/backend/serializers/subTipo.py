@@ -1,7 +1,8 @@
 from rest_framework.serializers import ModelSerializer
-from core.backend.models import Item
+from core.backend.models import SubtipoMaterial
+
 
 class SubTipoSerializer(ModelSerializer):
     class Meta:
-        model = Item
-        fields = '__all__'
+        model = SubtipoMaterial
+        fields = "__all__"

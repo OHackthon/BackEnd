@@ -1,8 +1,22 @@
-from django.contrib.admin import ModelAdmin
-from core.backend.models import Colecao
+from django.contrib import admin
+from core.backend.models import Item
 
-@admin.register(Colecao)
-class AdminItemAcervo(ModelAdmin):
-    list_display = ("titulo", "descricao", "colecao", "categoria", "localizacao", "data_aquisicao")
-    search_fields = ('titulo', "descricao", "colecao__nome", "categoria__nome", "localizacao__endereco")
+
+@admin.register(Item)
+class AdminItemAcervo(admin.ModelAdmin):
+    list_display = (
+        "numero_acervo",
+        "titulo",
+        "colecao",
+        "categoria_acervo",
+        "localizacao_atual",
+        "data_registro",
+    )
+    search_fields = (
+        "numero_acervo",
+        "titulo",
+        "colecao__nome",
+        "categoria_acervo__nome",
+        "localizacao_atual__nome",
+    )
     ordering = ("-id",)

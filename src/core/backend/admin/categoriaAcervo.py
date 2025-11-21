@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin
-from core.backend.models import categoriaAcervo
+from django.contrib import admin
+from core.backend.models import CategoriaAcervo
 
-@admin.register(categoriaAcervo)
-class AdminCategoriaAcervo(ModelAdmin):
-    list_display = ("nome", "descricao")
-    search_fields = ('nome', "descricao")
+
+@admin.register(CategoriaAcervo)
+class AdminCategoriaAcervo(admin.ModelAdmin):
+    list_display = ("nome_categoria", "descricao")
+    search_fields = ("nome_categoria", "descricao")
     ordering = ("-id",)

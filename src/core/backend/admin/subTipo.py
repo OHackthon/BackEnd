@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin
+from django.contrib import admin
 from core.backend.models import SubtipoMaterial
 
+
 @admin.register(SubtipoMaterial)
-class AdminSubTipo(ModelAdmin):
-    list_display = ("nome", "descricao", "fornecedor", "quantidade", "unidade_medida", "data_entrada")
-    search_fields = ('nome', "descricao", "fornecedor__nome")
+class AdminSubTipo(admin.ModelAdmin):
+    list_display = ("termo", "materia_prima")
+    search_fields = ("termo", "materia_prima__materia")
     ordering = ("-id",)
