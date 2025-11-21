@@ -1,5 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
+
+from core.backend.views.localizacao import LocalizacaoViewSet
+from core.backend.views.materiaPrima import MateriaPrimaViewSet
+from core.backend.views.itemAcervo import ItemAcervoViewSet
+from core.backend.views.colecao import ColecaoViewSet
+from core.backend.views.subTipo import SubTipoViewSet
+
 from rest_framework.routers import DefaultRouter
 
 
@@ -12,16 +19,16 @@ from core.users.views import UserViewSet
 
 router = DefaultRouter()
 
-router.register(r'users', UserViewSet, basename='users')
-router.register(r'localizacao', LocalizacaoViewSet, basename='localizacao')
-router.register(r'materiaprima', MateriaPrimaViewSet, basename='materiaprima')
-router.register(r'itemacervo', ItemAcervoViewSet, basename='itemacervo')
-router.register(r'usuario', ColecaoViewSet, basename='usuario')
-router.register(r'colecao', ColecaoViewSet, basename='colecao')
+router.register(r"users", UserViewSet, basename="users")
+router.register(r"localizacao", LocalizacaoViewSet, basename="localizacao")
+router.register(r"materiaprima", MateriaPrimaViewSet, basename="materiaprima")
+router.register(r"itemacervo", ItemAcervoViewSet, basename="itemacervo")
+router.register(r"colecao", ColecaoViewSet, basename="colecao")
+router.register(r"subtipo", SubTipoViewSet, basename="subtipo")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include((router.urls, 'api'), namespace='api')),
+    path("admin/", admin.site.urls),
+    path("api/", include((router.urls, "api"), namespace="api")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
