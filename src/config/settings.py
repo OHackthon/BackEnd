@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
     "rest_framework",
     "core.backend",
     "core.users",
@@ -114,6 +115,13 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Backend API",
+    "DESCRIPTION": "API para gerenciamento de um acervo, incluindo endpoints e documentação.",
+    "VERSION": "1.0.0",
 }
 
 AUTH_USER_MODEL = "users.User"

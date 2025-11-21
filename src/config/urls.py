@@ -12,6 +12,12 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+
 from core.users.views import UserViewSet
 
 router = DefaultRouter()
@@ -26,9 +32,22 @@ router.register(r'colecao', ColecaoViewSet, basename='colecao')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include((router.urls, 'api'), namespace='api')),
+    
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/media/", include(uploader_router.urls)),
+    
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/swagger/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "api/redoc/",
+        SpectacularRedocView.as_view(url_name="schema"),
+        name="redoc",
+    ),
 ]
 
 urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)

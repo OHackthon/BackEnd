@@ -14,6 +14,8 @@ src/core/backend/__init__.py
 src/core/backend/admin.py
 src/core/backend/apps.py
 src/core/backend/tests.py
+src/core/backend/migrations/0001_initial.py
+src/core/backend/migrations/__init__.py
 src/core/backend/models/__init__.py
 src/core/backend/models/acervo.py
 src/core/backend/models/categoria_acervo.py
