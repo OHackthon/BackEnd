@@ -1,4 +1,4 @@
-from rest_framwwork.serializers import  ModelSerializer
+from rest_framework.serializers import  ModelSerializer
 
 from core.backend.models import Acervo
 
