@@ -16,3 +16,4 @@ class ItemAcervoSerializer(ModelSerializer):
     class Meta:
         model = Item
         fields = '__all__'
+        depth = 1

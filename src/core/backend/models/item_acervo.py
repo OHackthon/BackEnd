@@ -11,7 +11,7 @@ from core.users.models import User
 
 class Item(models.Model):
     acervo = models.ForeignKey(Acervo, on_delete=models.PROTECT)
-    titulo = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200)
     imagem = models.ForeignKey(Image, related_name="+", on_delete=models.CASCADE, null=True, blank=True, default=None)
     colecao = models.ForeignKey(Colecao, on_delete=models.PROTECT)
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.PROTECT)
@@ -44,4 +44,4 @@ class Item(models.Model):
     ultima_atualizacao = models.DateTimeField(auto_now=True) # Atualiza sempre que salvar
 
     def __str__(self):
-        return f"{self.acervo} - {self.titulo}"
+        return f"{self.acervo} - {self.nome}"

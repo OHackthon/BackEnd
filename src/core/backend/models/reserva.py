@@ -21,7 +21,7 @@ class Reserva(models.Model):
 
     TIPO_MOVIMENTO_CHOICES = [
         ("INTERNO", "Movimentação Interna"),
-        ("SAIDA_EXTERNA", "Saída Externa / Empréstimo"),
+        ("EXTERNA", "Saída Externa / Empréstimo"),
     ]
     tipo_movimento = models.CharField(max_length=50, choices=TIPO_MOVIMENTO_CHOICES)
 

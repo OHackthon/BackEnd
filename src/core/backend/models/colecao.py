@@ -7,7 +7,7 @@ class Colecao(models.Model):
     descricao = models.CharField(max_length=255, null=True, blank=True)
     
     # 'auto_now_add' preenche a data automaticamente na criação
-    data_registro_sistema = models.DateTimeField(auto_now_add=True)
+    data_registro = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.nome_colecao
