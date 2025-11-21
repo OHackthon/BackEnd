@@ -10,6 +10,6 @@ class MateriaPrima(models.Model):
 
     nome = models.CharField(max_length=50, choices=MATERIA_PRIMA)
 
-    def _str_(self):
+    def __str__(self):
         return self.nome
 

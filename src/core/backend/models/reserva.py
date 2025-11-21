@@ -24,3 +24,6 @@ class Reserva(models.Model):
         ("SAIDA_EXTERNA", "Saída Externa / Empréstimo"),
     ]
     tipo_movimento = models.CharField(max_length=50, choices=TIPO_MOVIMENTO_CHOICES)
+
+    def __str__(self):
+        return f"Reserva do item {self.item} por {self.responsavel}"

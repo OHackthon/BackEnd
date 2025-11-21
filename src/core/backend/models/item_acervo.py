@@ -43,5 +43,5 @@ class Item(models.Model):
     data_registro = models.DateTimeField(auto_now_add=True) # Data fixa da criação
     ultima_atualizacao = models.DateTimeField(auto_now=True) # Atualiza sempre que salvar
 
-    def _str_(self):
-        return f"{self.numero_acervo} - {self.titulo}"
+    def __str__(self):
+        return f"{self.acervo} - {self.titulo}"

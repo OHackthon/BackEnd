@@ -10,5 +10,5 @@ class SubtipoMaterial(models.Model):
         # Garante que não exista o mesmo termo repetido dentro da mesma matéria-prima
         unique_together = ('materia_prima', 'termo')
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.termo} ({self.materia_prima.termo})"

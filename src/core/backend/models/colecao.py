@@ -9,5 +9,5 @@ class Colecao(models.Model):
     # 'auto_now_add' preenche a data automaticamente na criação
     data_registro_sistema = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.nome_colecao
