@@ -1,6 +1,5 @@
 README.md
 pyproject.toml
-src/manage.py
 src/BackEnd.egg-info/PKG-INFO
 src/BackEnd.egg-info/SOURCES.txt
 src/BackEnd.egg-info/dependency_links.txt
@@ -24,7 +23,12 @@ src/core/backend/models/itemAcervo.py
 src/core/backend/models/localizacao.py
 src/core/backend/models/materiaPrima.py
 src/core/backend/models/subTipo.py
+src/core/backend/serializers/ItemAcervo.py
 src/core/backend/serializers/__init_.py
 src/core/backend/serializers/categoriaAcervo.py
+src/core/backend/serializers/colecao.py
+src/core/backend/serializers/localizacao.py
+src/core/backend/serializers/materiaprima.py
+src/core/backend/serializers/subTipo.py
 src/core/backend/views/__init__.py
 src/core/backend/views/exemplo.py
