@@ -1,2 +1,15 @@
 django>=5.2.8
 djangorestframework>=3.16.1
+djangorestframework-simplejwt>=5.5.1
+django-cors-headers>=4.9.0
+python-dotenv>=1.2.1
+Pillow>=12.0.0
+django-filter>=25.2
+drf-spectacular[sidecar]>=0.29.0
+drf-spectacular-sidecar>=2025.10.1
+
+[:sys_platform == "linux"]
+python-magic>=0.4.27
+
+[:sys_platform == "win32, darwin"]
+python-magic-bin>=0.4.14

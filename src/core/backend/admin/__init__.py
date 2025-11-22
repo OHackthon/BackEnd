@@ -1,1 +1,0 @@
-from .exemplo import AdminModelExemplo
