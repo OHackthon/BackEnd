@@ -7,4 +7,3 @@ from core.backend.serializers.colecionador import ColecionadorSerializer
 class ColecionadorViewSet(ModelViewSet):
     queryset = Colecionador.objects.all()
     serializer_class = ColecionadorSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]

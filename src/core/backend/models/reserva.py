@@ -2,13 +2,14 @@ from django.db import models
 from .item_acervo import Item
 from .localizacao import Localizacao
 from core.users.models import User
+from django.contrib.auth import get_user_model
 
 
 class Reserva(models.Model):
     item = models.ForeignKey(
         Item, on_delete=models.PROTECT, related_name="movimentacoes"
     )
-    responsavel = models.ForeignKey(User, on_delete=models.PROTECT)
+    responsavel = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     local_origem = models.ForeignKey(
         Localizacao, on_delete=models.PROTECT, related_name="saidas"
