@@ -10,7 +10,6 @@ src/config/asgi.py
 src/config/settings.py
 src/config/urls.py
 src/config/wsgi.py
-src/core/backend/__init__.py
 src/core/backend/admin.py
 src/core/backend/apps.py
 src/core/backend/tests.py
