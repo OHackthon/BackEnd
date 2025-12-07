@@ -12,7 +12,7 @@ class Item(models.Model):
     # Identificação Única
     numero_acervo = models.CharField(max_length=50, unique=True)
     titulo = models.CharField(max_length=200)
-    imagem = models.ImageField(upload_to="itens/", null=True, blank=True)
+    imagem = models.ImageField(upload_to="itens/")
 
     # Vínculos (Foreign Keys)
     colecao = models.ForeignKey(Colecao, on_delete=models.CASCADE)
@@ -38,6 +38,7 @@ class Item(models.Model):
         ("FRAGMENTADO", "Fragmentado"),
     ]
     estado_conservacao = models.CharField(max_length=50, choices=ESTADO_CHOICES)
+    inteireza = models.CharField(max_length=50, choices=INTEREZA, null=True, blank=True)
     dimensoes = models.CharField(max_length=100, null=True, blank=True)
     peso = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     descricao_detalhada = models.TextField(null=True, blank=True)
