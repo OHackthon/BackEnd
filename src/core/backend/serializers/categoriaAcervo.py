@@ -1,8 +1,10 @@
-from rest_framework.seriliazers import Modelserializer
+from rest_framework import serializers
 from core.backend.models import CategoriaAcervo
 
-class CategoriaAcervoSerializer(Modelserializer):
+
+class CategoriaAcervoSerializer(serializers.ModelSerializer):
+    nome = serializers.CharField(source="nome_categoria")
+
     class Meta:
         model = CategoriaAcervo
-        fields = '__all__'
-        
+        fields = ["id", "nome", "descricao"]

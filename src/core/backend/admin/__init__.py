@@ -1,1 +1,1 @@
-from .exemplo import AdminModelExemplo
+# from .exemplo import AdminModelExemplo
