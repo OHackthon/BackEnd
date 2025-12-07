@@ -10,15 +10,10 @@ from core.backend.models import (
 )
 import random
 from datetime import date
-
-
 class Command(BaseCommand):
     help = "Popula o banco de dados com dados de teste"
-
     def handle(self, *args, **kwargs):
         self.stdout.write("Iniciando população do banco de dados...")
-
-        # Criar usuário admin se não existir
         user, created = User.objects.get_or_create(
             username="admin",
             defaults={
@@ -33,8 +28,6 @@ class Command(BaseCommand):
             self.stdout.write("Usuário admin criado.")
         else:
             self.stdout.write("Usuário admin já existe.")
-
-        # Categorias
         categorias = ["Pintura", "Escultura", "Fotografia", "Mobiliário", "Numismática"]
         objs_categorias = []
         for cat in categorias:
@@ -43,8 +36,6 @@ class Command(BaseCommand):
             )
             objs_categorias.append(obj)
         self.stdout.write(f"{len(objs_categorias)} categorias criadas/verificadas.")
-
-        # Localizações
         locais = [
             "Reserva Técnica 1",
             "Sala de Exposição A",
@@ -63,16 +54,12 @@ class Command(BaseCommand):
             )
             objs_locais.append(obj)
         self.stdout.write(f"{len(objs_locais)} localizações criadas/verificadas.")
-
-        # Matéria Prima
         materias = ["Madeira", "Metal", "Papel", "Tela", "Cerâmica"]
         objs_materias = []
         for mat in materias:
             obj, _ = MateriaPrima.objects.get_or_create(materia=mat)
             objs_materias.append(obj)
         self.stdout.write(f"{len(objs_materias)} matérias-primas criadas/verificadas.")
-
-        # Subtipos
         subtipos_map = {
             "Madeira": ["Carvalho", "Pinho", "Mogno"],
             "Metal": ["Ferro", "Bronze", "Ouro"],
@@ -89,8 +76,6 @@ class Command(BaseCommand):
                 )
                 objs_subtipos.append(obj)
         self.stdout.write(f"{len(objs_subtipos)} subtipos criados/verificados.")
-
-        # Coleções
         colecoes = ["Coleção Moderna", "Coleção Clássica", "Doação Família Silva"]
         objs_colecoes = []
         for col in colecoes:
@@ -104,20 +89,16 @@ class Command(BaseCommand):
             )
             objs_colecoes.append(obj)
         self.stdout.write(f"{len(objs_colecoes)} coleções criadas/verificadas.")
-
-        # Itens
-        for i in range(1, 21):  # Criar 20 itens
+        for i in range(1, 21):  
             numero_acervo = f"ACERVO-{i:04d}"
             if not Item.objects.filter(numero_acervo=numero_acervo).exists():
                 materia = random.choice(objs_materias)
-                # Filtrar subtipos da materia escolhida
                 subtipos_da_materia = [
                     s for s in objs_subtipos if s.materia_prima == materia
                 ]
                 subtipo = (
                     random.choice(subtipos_da_materia) if subtipos_da_materia else None
                 )
-
                 Item.objects.create(
                     numero_acervo=numero_acervo,
                     titulo=f"Obra de Arte {i}",
@@ -132,5 +113,4 @@ class Command(BaseCommand):
                     peso=1.5,
                 )
         self.stdout.write("Itens criados.")
-
         self.stdout.write(self.style.SUCCESS("Banco de dados populado com sucesso!"))

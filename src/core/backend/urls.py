@@ -10,7 +10,6 @@ from core.backend.views.viewsets import (
     UserViewSet,
     ReservaViewSet,
 )
-
 router = DefaultRouter()
 router.register(r"users", UserViewSet)
 router.register(r"categorias-acervo", CategoriaAcervoViewSet)
@@ -20,12 +19,10 @@ router.register(r"localizacoes", LocalizacaoViewSet)
 router.register(r"materias-primas", MateriaPrimaViewSet)
 router.register(r"subtipos", SubtipoMaterialViewSet)
 router.register(r"reservas", ReservaViewSet)
-
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
 urlpatterns = [
     path("", include(router.urls)),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

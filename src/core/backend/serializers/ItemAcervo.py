@@ -5,13 +5,10 @@ from .materiaprima import MateriaPrimaSerializer
 from .subTipo import SubtipoMaterialSerializer
 from .localizacao import LocalizacaoSerializer
 from .categoriaAcervo import CategoriaAcervoSerializer
-
-
 class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
         fields = "__all__"
-
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         try:
@@ -19,7 +16,6 @@ class ItemSerializer(ModelSerializer):
                 representation["colecao"] = ColecaoSerializer(instance.colecao).data
         except:
             pass
-
         try:
             if instance.materia_prima:
                 representation["materia_prima"] = MateriaPrimaSerializer(
@@ -27,7 +23,6 @@ class ItemSerializer(ModelSerializer):
                 ).data
         except:
             pass
-
         try:
             if instance.subtipo:
                 representation["subtipo"] = SubtipoMaterialSerializer(
@@ -35,7 +30,6 @@ class ItemSerializer(ModelSerializer):
                 ).data
         except:
             pass
-
         try:
             if instance.localizacao_atual:
                 representation["localizacao_atual"] = LocalizacaoSerializer(
@@ -43,7 +37,6 @@ class ItemSerializer(ModelSerializer):
                 ).data
         except:
             pass
-
         try:
             if instance.categoria_acervo:
                 representation["categoria_acervo"] = CategoriaAcervoSerializer(
@@ -51,5 +44,4 @@ class ItemSerializer(ModelSerializer):
                 ).data
         except:
             pass
-
         return representation
