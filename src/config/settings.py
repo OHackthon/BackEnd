@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "core.backend",
     "rest_framework",
 ]
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

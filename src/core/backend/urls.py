@@ -1,8 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from core.backend.views.viewsets import (
+from core.backend.views import (
     CategoriaAcervoViewSet,
     ColecaoViewSet,
+    ColecionadorViewSet,
     ItemViewSet,
     LocalizacaoViewSet,
     MateriaPrimaViewSet,
@@ -10,10 +11,12 @@ from core.backend.views.viewsets import (
     UserViewSet,
     ReservaViewSet,
 )
+
 router = DefaultRouter()
 router.register(r"users", UserViewSet)
 router.register(r"categorias-acervo", CategoriaAcervoViewSet)
 router.register(r"colecoes", ColecaoViewSet)
+router.register(r"colecionadores", ColecionadorViewSet)
 router.register(r"itens-acervo", ItemViewSet)
 router.register(r"localizacoes", LocalizacaoViewSet)
 router.register(r"materias-primas", MateriaPrimaViewSet)
@@ -23,6 +26,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
 urlpatterns = [
     path("", include(router.urls)),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
