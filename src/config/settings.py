@@ -6,14 +6,21 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-load_dotenv()
+import dj_database_url
+
+# Carregar .env do diretório src
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "django-insecure-qih=hnfg&2k+=w06_(i6a406d&)3*draye&smwy)#51ussf*oe"
-DEBUG = True
-ALLOWED_HOSTS = []
+ENV_PATH = BASE_DIR / ".env"
+load_dotenv(ENV_PATH)
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "django-insecure-qih=hnfg&2k+=w06_(i6a406d&)3*draye&smwy)#51ussf*oe"
+)
+DEBUG = os.environ.get("DEBUG", "True") == "True"
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -54,12 +61,23 @@ TEMPLATES = [
     },
 ]
 WSGI_APPLICATION = "config.wsgi.application"
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+
+# Database configuration - Use Neon PostgreSQL or local SQLite
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -88,19 +106,39 @@ REST_FRAMEWORK = {
     )
 }
 from datetime import timedelta
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://localhost:5173",
+    "https://127.0.0.1:5173",
+    os.environ.get("FRONTEND_URL", ""),
 ]
+CORS_ALLOWED_ORIGINS = [
+    url for url in CORS_ALLOWED_ORIGINS if url
+]  # Remove empty strings
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", "your_cloud_name"),
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY", "your_api_key"),
     "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", "your_api_secret"),
 }
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_SECURITY_POLICY = {
+        "default-src": ("'self'", "*.cloudinary.com"),
+        "script-src": ("'self'", "'unsafe-inline'"),
+        "style-src": ("'self'", "'unsafe-inline'", "*.cloudinary.com"),
+        "img-src": ("'self'", "data:", "*.cloudinary.com"),
+    }

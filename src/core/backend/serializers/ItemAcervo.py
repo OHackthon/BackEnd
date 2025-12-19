@@ -5,10 +5,25 @@ from .materiaprima import MateriaPrimaSerializer
 from .subTipo import SubtipoMaterialSerializer
 from .localizacao import LocalizacaoSerializer
 from .categoriaAcervo import CategoriaAcervoSerializer
+import uuid
+
+
 class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
         fields = "__all__"
+        read_only_fields = ["criado_por", "data_registro", "ultima_atualizacao"]
+
+    def validate_numero_acervo(self, value):
+        if not value:
+            value = f"ACERVO-{uuid.uuid4().hex[:8].upper()}"
+        return value
+
+    def to_internal_value(self, data):
+        if "estado_conservacao" not in data or not data.get("estado_conservacao"):
+            data["estado_conservacao"] = "REGULAR"
+        return super().to_internal_value(data)
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         try:

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from core.backend.models import (
     CategoriaAcervo,
     Colecao,
+    Colecionador,
     Item,
     Localizacao,
     MateriaPrima,
@@ -10,8 +11,11 @@ from core.backend.models import (
 )
 import random
 from datetime import date
+
+
 class Command(BaseCommand):
     help = "Popula o banco de dados com dados de teste"
+
     def handle(self, *args, **kwargs):
         self.stdout.write("Iniciando população do banco de dados...")
         user, created = User.objects.get_or_create(
@@ -89,7 +93,49 @@ class Command(BaseCommand):
             )
             objs_colecoes.append(obj)
         self.stdout.write(f"{len(objs_colecoes)} coleções criadas/verificadas.")
-        for i in range(1, 21):  
+
+        colecionadores_data = [
+            {
+                "nome": "João Silva",
+                "email": "joao@example.com",
+                "telefone": "(11) 98765-4321",
+            },
+            {
+                "nome": "Maria Santos",
+                "email": "maria@example.com",
+                "telefone": "(11) 99876-5432",
+            },
+            {
+                "nome": "Carlos Oliveira",
+                "email": "carlos@example.com",
+                "telefone": "(11) 97654-3210",
+            },
+            {
+                "nome": "Ana Costa",
+                "email": "ana@example.com",
+                "telefone": "(11) 98765-4321",
+            },
+            {
+                "nome": "Pedro Ferreira",
+                "email": "pedro@example.com",
+                "telefone": "(11) 99876-5432",
+            },
+        ]
+        objs_colecionadores = []
+        for col_data in colecionadores_data:
+            obj, _ = Colecionador.objects.get_or_create(
+                nome=col_data["nome"],
+                defaults={
+                    "email": col_data["email"],
+                    "telefone": col_data["telefone"],
+                },
+            )
+            objs_colecionadores.append(obj)
+        self.stdout.write(
+            f"{len(objs_colecionadores)} colecionadores criados/verificados."
+        )
+
+        for i in range(1, 21):
             numero_acervo = f"ACERVO-{i:04d}"
             if not Item.objects.filter(numero_acervo=numero_acervo).exists():
                 materia = random.choice(objs_materias)

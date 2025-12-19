@@ -5,10 +5,12 @@ from .materiaPrima import MateriaPrima
 from .subTipo import SubtipoMaterial
 from .localizacao import Localizacao
 from .categoriaAcervo import CategoriaAcervo
+
+
 class Item(models.Model):
     numero_acervo = models.CharField(max_length=50, unique=True)
     titulo = models.CharField(max_length=200)
-    imagem = models.ImageField(upload_to="itens/")
+    imagem = models.ImageField(upload_to="itens/", null=True, blank=True)
     colecao = models.ForeignKey(Colecao, on_delete=models.CASCADE)
     materia_prima = models.ForeignKey(MateriaPrima, on_delete=models.PROTECT)
     subtipo = models.ForeignKey(
@@ -37,9 +39,8 @@ class Item(models.Model):
     criado_por = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="itens_criados"
     )
-    data_registro = models.DateTimeField(auto_now_add=True)  
-    ultima_atualizacao = models.DateTimeField(
-        auto_now=True
-    )  
+    data_registro = models.DateTimeField(auto_now_add=True)
+    ultima_atualizacao = models.DateTimeField(auto_now=True)
+
     def _str_(self):
         return f"{self.numero_acervo} - {self.titulo}"

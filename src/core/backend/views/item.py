@@ -18,6 +18,9 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(criado_por=self.request.user)
+
     @action(detail=False, methods=["post"])
     def upload_excel(self, request):
         file = request.FILES.get("file")

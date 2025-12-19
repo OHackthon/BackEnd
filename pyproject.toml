@@ -2,9 +2,7 @@
 name = "BackEnd"
 version = "0.1.0"
 description = "Default template for PDM package"
-authors = [
-    {name = "renato-chagas", email = "renatochagas.m@gmail.com"},
-]
+authors = [{ name = "renato-chagas", email = "renatochagas.m@gmail.com" }]
 dependencies = [
     "django>=5.2.8",
     "djangorestframework>=3.16.1",
@@ -16,10 +14,13 @@ dependencies = [
     "cloudinary>=1.44.1",
     "django-cloudinary-storage>=0.3.0",
     "python-dotenv>=1.2.1",
+    "dj-database-url>=2.1.0",
+    "gunicorn>=21.2.0",
+    "psycopg2-binary>=2.9.9",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 
 [tool.pdm]
