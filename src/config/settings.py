@@ -12,10 +12,10 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 
-# Carregar .env do diretório src
+# Carregar .env do diretório src (se existir)
 BASE_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BASE_DIR / ".env"
-load_dotenv(ENV_PATH)
+load_dotenv(ENV_PATH, verbose=False)
 SECRET_KEY = os.environ.get(
     "SECRET_KEY", "django-insecure-qih=hnfg&2k+=w06_(i6a406d&)3*draye&smwy)#51ussf*oe"
 )
