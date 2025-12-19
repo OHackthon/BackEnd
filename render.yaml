@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: hackathon-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python src/manage.py migrate --noinput
+    startCommand: cd src && gunicorn config.wsgi --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DATABASE_URL
+        value: ${DATABASE_URL}
+      - key: SECRET_KEY
+        value: ${SECRET_KEY}
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ${ALLOWED_HOSTS}
+      - key: PYTHON_VERSION
+        value: "3.12"
+      - key: CLOUDINARY_CLOUD_NAME
+        value: ${CLOUDINARY_CLOUD_NAME}
+      - key: CLOUDINARY_API_KEY
+        value: ${CLOUDINARY_API_KEY}
+      - key: CLOUDINARY_API_SECRET
+        value: ${CLOUDINARY_API_SECRET}
+    routes:
+      - type: http
+        source: /
+        destination: /
+    healthCheckPath: /api/admin/
