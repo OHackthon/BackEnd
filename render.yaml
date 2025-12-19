@@ -3,8 +3,8 @@ services:
     name: hackathon-backend
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt && python src/manage.py migrate --noinput
-    startCommand: cd src && gunicorn config.wsgi --bind 0.0.0.0:$PORT
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt && python src/manage.py migrate --noinput
+    startCommand: cd src && gunicorn config.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3
     envVars:
       - key: DATABASE_URL
         value: ${DATABASE_URL}
