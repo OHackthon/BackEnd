@@ -22,8 +22,4 @@ services:
         value: ${CLOUDINARY_API_KEY}
       - key: CLOUDINARY_API_SECRET
         value: ${CLOUDINARY_API_SECRET}
-    routes:
-      - type: http
-        source: /
-        destination: /
     healthCheckPath: /api/admin/
