@@ -15,7 +15,7 @@ services:
       - key: ALLOWED_HOSTS
         value: ${ALLOWED_HOSTS}
       - key: PYTHON_VERSION
-        value: "3.12"
+        value: "3.12.0"
       - key: CLOUDINARY_CLOUD_NAME
         value: ${CLOUDINARY_CLOUD_NAME}
       - key: CLOUDINARY_API_KEY
