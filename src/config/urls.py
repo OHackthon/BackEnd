@@ -26,7 +26,13 @@ def health_check(request):
     return JsonResponse({"status": "ok"})
 
 
+def root_view(request):
+    """Root endpoint"""
+    return JsonResponse({"message": "Hackathon Backend API", "status": "running"})
+
+
 urlpatterns = [
+    path("", root_view),
     path("health/", health_check),
     path("admin/", admin.site.urls),
     path("api/", include("core.backend.urls")),

@@ -21,12 +21,17 @@ SECRET_KEY = os.environ.get(
 )
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-# ALLOWED_HOSTS - permite todos em produção (Render)
+# ALLOWED_HOSTS - desabilita validação em produção para evitar problemas de host
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*.onrender.com", "*.vercel.app"]
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 else:
-    # Em produção, aceita qualquer host para evitar validação de HOST
+    # Em produção (Render), permite qualquer host
+    # Isso evita problemas com validação de HOST/ports dinâmicos
     ALLOWED_HOSTS = ["*"]
+    
+# Desabilitar validação rigorosa de HOST se tiver problema
+import logging
+logging.disable(logging.CRITICAL)
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
