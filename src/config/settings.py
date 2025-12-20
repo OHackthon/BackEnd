@@ -21,19 +21,12 @@ SECRET_KEY = os.environ.get(
 )
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-# ALLOWED_HOSTS com suporte a wildcards
-_allowed_hosts = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1")
-ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts.split(",")]
-
-# Adicionar padrões de wildcard
-if not DEBUG:
-    ALLOWED_HOSTS.extend(
-        [
-            ".onrender.com",
-            ".vercel.app",
-            "127.0.0.1",
-        ]
-    )
+# ALLOWED_HOSTS - permite todos em produção (Render)
+if DEBUG:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*.onrender.com", "*.vercel.app"]
+else:
+    # Em produção, aceita qualquer host para evitar validação de HOST
+    ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,7 +42,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "config.middleware.BypassHostValidationMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
