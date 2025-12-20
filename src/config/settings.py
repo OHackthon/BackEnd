@@ -134,18 +134,29 @@ SIMPLE_JWT = {
 }
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://localhost:5173",
-    "https://127.0.0.1:5173",
-    "https://front-end-two-psi.vercel.app",
-    "https://front-end-museu.vercel.app",
-    os.environ.get("FRONTEND_URL", ""),
+
+# Permitir todos os domínios Vercel e localhost
+def get_cors_origins():
+    origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://localhost:5173",
+        "https://127.0.0.1:5173",
+        "https://front-end-two-psi.vercel.app",
+        "https://front-end-museu.vercel.app",
+    ]
+    # Adicionar URL do frontend se definida
+    frontend_url = os.environ.get("FRONTEND_URL", "")
+    if frontend_url:
+        origins.append(frontend_url)
+    return [url for url in origins if url]
+
+CORS_ALLOWED_ORIGINS = get_cors_origins()
+
+# Aceitar qualquer subdomínio do Vercel
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.vercel\.app$",
 ]
-CORS_ALLOWED_ORIGINS = [
-    url for url in CORS_ALLOWED_ORIGINS if url
-]  # Remove empty strings
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", "your_cloud_name"),
     "API_KEY": os.environ.get("CLOUDINARY_API_KEY", "your_api_key"),
