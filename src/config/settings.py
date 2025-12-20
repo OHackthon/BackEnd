@@ -139,6 +139,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "https://localhost:5173",
     "https://127.0.0.1:5173",
+    "https://front-end-two-psi.vercel.app",
+    "https://front-end-museu.vercel.app",
     os.environ.get("FRONTEND_URL", ""),
 ]
 CORS_ALLOWED_ORIGINS = [
