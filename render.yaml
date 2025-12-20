@@ -20,4 +20,4 @@ services:
         value: ${CLOUDINARY_API_KEY}
       - key: CLOUDINARY_API_SECRET
         value: ${CLOUDINARY_API_SECRET}
-    healthCheckPath: /api/admin/
+    healthCheckPath: /
