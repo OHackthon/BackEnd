@@ -71,13 +71,25 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Database configuration - Use Neon PostgreSQL or local SQLite
-if os.environ.get("DATABASE_URL"):
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url and "://" in database_url:
+    # Use Neon PostgreSQL if DATABASE_URL is properly configured
     DATABASES = {
         "default": dj_database_url.config(
-            default=os.environ.get("DATABASE_URL"),
+            default=database_url,
             conn_max_age=600,
             conn_health_checks=True,
         )
+    }
+else:
+    # Fallback to SQLite if DATABASE_URL not set
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
     }
 else:
     DATABASES = {
