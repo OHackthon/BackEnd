@@ -20,7 +20,20 @@ SECRET_KEY = os.environ.get(
     "SECRET_KEY", "django-insecure-qih=hnfg&2k+=w06_(i6a406d&)3*draye&smwy)#51ussf*oe"
 )
 DEBUG = os.environ.get("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
+# ALLOWED_HOSTS com suporte a wildcards
+_allowed_hosts = os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1")
+ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts.split(",")]
+
+# Adicionar padrões de wildcard
+if not DEBUG:
+    ALLOWED_HOSTS.extend(
+        [
+            ".onrender.com",
+            ".vercel.app",
+            "127.0.0.1",
+        ]
+    )
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -37,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "config.middleware.HealthCheckMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
