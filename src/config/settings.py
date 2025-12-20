@@ -28,10 +28,6 @@ else:
     # Em produção (Render), permite qualquer host
     # Isso evita problemas com validação de HOST/ports dinâmicos
     ALLOWED_HOSTS = ["*"]
-    
-# Desabilitar validação rigorosa de HOST se tiver problema
-import logging
-logging.disable(logging.CRITICAL)
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -47,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "config.middleware.ForceValidHostMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
